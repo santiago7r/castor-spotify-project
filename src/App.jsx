@@ -20,6 +20,7 @@ function App() {
       <form onSubmit={handleSearch}>
         <input type="text" value={track} onChange={e => setTrack(e.target.value)} />
         <button type='submit'>Search</button>
+        <button type='button'>Sign In to Spotify</button>
       </form>
     </>
   )
