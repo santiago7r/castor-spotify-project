@@ -11,6 +11,7 @@ function App() {
   const [token, setToken] = useState("")
   const [searchKey, setSearchKey] = useState("")
   const [artists, setArtists] = useState([])
+  // const [profileInfo, setProfileInfo] = useState("")
 
   useEffect(() => {
       const hash = window.location.hash
@@ -49,9 +50,7 @@ function App() {
             {artist.name}
         </div>
     ))
-}
-
-
+  }
 
   const logout = () => {
       setToken("")
@@ -67,10 +66,15 @@ function App() {
                       to Spotify</a>
                   : <button onClick={logout}>Logout</button>}
               {token ?
-                    <form onSubmit={searchArtists}>
-                        <input type="text" onChange={e => setSearchKey(e.target.value)}/>
-                        <button type={"submit"}>Search</button>
-                    </form>
+                    <>
+                      <form onSubmit={searchArtists}>
+                          <input type="text" onChange={e => setSearchKey(e.target.value)}/>
+                          <button type={"submit"}>Search</button>
+                      </form>
+                      <div>
+
+                      </div>
+                    </>
 
                     : <h2>Please login</h2>
                 }
