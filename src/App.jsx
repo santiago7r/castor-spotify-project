@@ -6,7 +6,6 @@ import Search from './components/Search';
 function App() {
 
   const [token, setToken] = useState("")
-  // const [profileInfo, setProfileInfo] = useState("")
 
   useEffect(() => {
       const hash = window.location.hash
