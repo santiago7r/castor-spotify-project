@@ -29,16 +29,16 @@ function App() {
   }
 
   return (
-      <div className="App">
-              <h1>Spotify Project</h1>
-              {!token ?
-                <Login />
-              : <>
-                  <button onClick={logout}>Logout</button>
-                  <Search token={token} />
-                </>
-              }
-      </div>
+    <div>
+      <h1 style={{color: "#1DB954"}}>Spotify Project</h1>
+        {!token ?
+          <Login />
+          : <>
+            <button onClick={logout}>Logout</button>
+            <Search token={token} />
+          </>
+      }
+    </div>
   );
 }
 

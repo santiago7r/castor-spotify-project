@@ -1,0 +1,18 @@
+.main-img {
+    height: 100px;
+    width: auto;
+    border-radius: 20%;
+}
+
+.main-text {
+    display: block;
+}
+
+.sub-text {
+    display: block;
+}
+
+.main-title {
+    font-size: 30px;
+    font-weight: bold;
+}

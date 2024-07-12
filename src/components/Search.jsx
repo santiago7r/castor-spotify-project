@@ -1,5 +1,6 @@
 import axios from "axios"
 import { useState } from "react"
+import CardGroup from "./CardGroup/CardGroup"
 
 
 // eslint-disable-next-line react/prop-types
@@ -7,7 +8,7 @@ const Search = ({ token }) => {
 
   const [searchKey, setSearchKey] = useState("")
 
-  const [artists, setArtists] = useState([])
+  const [data, setData] = useState({})
 
   const searchArtists = async (e) => {
     e.preventDefault()
@@ -16,23 +17,33 @@ const Search = ({ token }) => {
             Authorization: `Bearer ${token}`
         },
         params: {
+            limit: 8,
             q: searchKey,
-            type: "artist"
+            type: "track,artist,album"
         }
     })
 
-    setArtists(data.artists.items)
+    setData(data)
     console.log(data)
   }
 
-  const renderArtists = () => {
-    return artists.map(artist => (
-        <div key={artist.id}>
-            {artist.images.length ? <img width={"100%"} src={artist.images[0].url} alt=""/> : <div>No Image</div>}
-            {artist.name}
-        </div>
-    ))
-  }
+  const mapSongs = ({ tracks }) => tracks && tracks.items.map(({name, artists, album: {images: [img]}}) => ({
+    img: img.url,
+    mainText: name,
+    subText: artists[0].name
+  }))
+
+  const mapArtists = ({ artists }) => artists && artists.items.map(({name, genres: [genre], images: [img]}) => ({
+    img: img.url,
+    mainText: name,
+    subText: genre
+  }))
+
+  const mapAlbuns = ({ albums }) => albums && albums.items.map(({name, artists: [artist], images: [img]}) => ({
+    img: img.url,
+    mainText: name,
+    subText: artist.name
+  }))
 
   return (
     <>
@@ -40,7 +51,9 @@ const Search = ({ token }) => {
             <input type="text" onChange={e => setSearchKey(e.target.value)}/>
             <button type={"submit"}>Search</button>
         </form>
-        {renderArtists()}
+        <CardGroup cardItems={mapSongs(data)} title="Songs" top/>
+        <CardGroup cardItems={mapArtists(data)} title="Artists" top/>
+        <CardGroup cardItems={mapAlbuns(data)} title="Albuns" top/>
     </>
   )
 
