@@ -2,6 +2,7 @@
     height: 100px;
     width: auto;
     border-radius: 20%;
+    cursor: pointer;
 }
 
 .main-text {

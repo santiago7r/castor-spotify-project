@@ -2,10 +2,15 @@
 import './Card.css';
 
 const Card = ({ data }) => {
-    const { img , mainText ="Main Text", subText="Sub Text" } = data;
+    const { img, mainText ="Main Text", subText="Sub Text" } = data;
+
+    const handleOnClick = () => {
+        console.log("CLICK ON the img")
+    }
+    
     return (
         <div>
-            <div>
+            <div onClick={handleOnClick}>
                 <img className="main-img" src={img} alt="" />
             </div>
             <div>
