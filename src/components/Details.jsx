@@ -9,8 +9,23 @@ import Typography from '@mui/material/Typography';
 import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import SkipNextIcon from '@mui/icons-material/SkipNext';
+import { Slider } from '@mui/material';
+import { checkPropTypes } from 'prop-types';
 
-export default function MediaControlCard() {
+function SliderValueLabel({ children }) {
+    return (
+      <span className="label">
+        <div className="value">{children}</div>
+      </span>
+    );
+  }
+
+  SliderValueLabel.propTypes = {
+    children: checkPropTypes.element,
+  };
+
+// eslint-disable-next-line react/prop-types
+export default function MediaControlCard({image, song, artist}) {
   const theme = useTheme();
 
   return (
@@ -18,12 +33,15 @@ export default function MediaControlCard() {
       <Box sx={{ display: 'flex', flexDirection: 'column' }}>
         <CardContent sx={{ flex: '1 0 auto' }}>
           <Typography component="div" variant="h5">
-            Live From Space
+            {song}
           </Typography>
           <Typography variant="subtitle1" color="text.secondary" component="div">
-            Mac Miller
+            {artist}
           </Typography>
         </CardContent>
+        <Box sx={{ display: 'flex', alignItems: 'center', pl: 2, pr: 3 }}>
+          <Slider defaultValue={10} slots={{ valueLabel: SliderValueLabel }} />
+        </Box>
         <Box sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1 }}>
           <IconButton aria-label="previous">
             {theme.direction === 'rtl' ? <SkipNextIcon /> : <SkipPreviousIcon />}
@@ -39,7 +57,7 @@ export default function MediaControlCard() {
       <CardMedia
         component="img"
         sx={{ width: 151 }}
-        image="/static/images/cards/live-from-space.jpg"
+        image={image}
         alt="Live from space album cover"
       />
     </Card>
