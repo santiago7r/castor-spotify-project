@@ -3,8 +3,6 @@ import { useState } from "react"
 import CardGroup from "./CardGroup/CardGroup"
 import { useNavigate } from "react-router-dom"
 
-
-// eslint-disable-next-line react/prop-types
 const Search = ({ token }) => {
 
   const [searchKey, setSearchKey] = useState("")

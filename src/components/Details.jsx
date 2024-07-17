@@ -26,7 +26,7 @@ function SliderValueLabel({ children }) {
     children: checkPropTypes.element,
   };
 
-// eslint-disable-next-line react/prop-types
+
 export default function MediaControlCard() {
 
   const { type, id } = useParams()
