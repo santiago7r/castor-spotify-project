@@ -35,7 +35,7 @@ export default function MediaControlCard() {
 
   let image, mainText, subText
 
-  if (data && type === 'albums' || type === 'artists') {
+  if (data && type === 'albums') {
     image = data.images[0].url
     mainText = data.name
     subText = `Total tracks: ${data.total_tracks}`
